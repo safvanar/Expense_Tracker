@@ -1,9 +1,14 @@
 require('dotenv').config();
 
+const fs = require('fs');
+const path = require('path')
+
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const compression = require('compression');
 const cors = require('cors');
+const morgan = require('morgan');
+
 
 const sequelize = require('./utils/database')
 
@@ -29,11 +34,17 @@ const ForgotPasswordRequest = require('./models/forgotPasswordRequests');
 
 const DownloadedFile = require('./models/downloadedFiles')
 
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a'})
+
 app.use(express.static('public'))
+
+app.use(compression())
 
 app.use(express.urlencoded({ extended: false }))
 
 app.use(cors());
+
+app.use(morgan('combined', { stream: accessLogStream }))
 
 app.use(bodyParser.json({ extended: false }));
 
@@ -76,7 +87,7 @@ const PORT = process.env.PORT
 async function initiate(){
     try {
         await sequelize.sync()
-            app.listen(PORT, () => {
+            app.listen(PORT || 3000, () => {
             console.log(`Server running on port ${PORT}...`)
         })
     } catch (error) {

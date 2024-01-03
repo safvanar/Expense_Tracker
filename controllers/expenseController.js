@@ -63,7 +63,7 @@ exports.getExpenses = async (req, res, next) => {
         // const expenses = await Expense.findAll({where: { userId: req.user.id}})
         res.status(200).json({ expenses: expenses})
     }catch(err){
-        console.log(err)
+        res.status(403).json({message: 'Unable to fetch expenses!'})
     }
 }
 

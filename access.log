@@ -1,0 +1,5 @@
+::1 - - [03/Jan/2024:18:26:44 +0000] "GET /home HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::1 - - [03/Jan/2024:18:26:45 +0000] "GET /premium/getDownloadedFiles HTTP/1.1" 201 - "http://localhost:3000/home" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::1 - - [03/Jan/2024:18:26:45 +0000] "GET /expense/get-expenses?page=1&pageSize=5 HTTP/1.1" 304 - "http://localhost:3000/home" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::1 - - [03/Jan/2024:18:26:45 +0000] "GET /user/totalExpense HTTP/1.1" 201 29 "http://localhost:3000/home" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::1 - - [03/Jan/2024:18:26:45 +0000] "GET /favicon.ico HTTP/1.1" 304 - "http://localhost:3000/home" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"

@@ -38,7 +38,7 @@ async function domLoad(){
             // const userStatus = await axios.get(`/user/getStatus`, {headers: {'Authorization': token}})
             if(parseJwt(token).isPremiumUser){
                 premiumBtn.style.display = 'none'
-                premiumDiv.innerHTML = `<h2 style="color: gold;">You Are a premium user!</h2>
+                premiumDiv.innerHTML = `<h3 style="color: gold;">You Are a premium user!</h3>
                                         <button class="btn btn-dark" style="color: gold;" onclick = "showLeaderboard()">Leaderboad</button>
                                         <button class="btn btn-dark" style="color: gold;" onclick = "downloadReport()">Expense Report</button>`
                 const fileResponse = await axios.get('/premium/getDownloadedFiles', {headers: {'Authorization': token}})

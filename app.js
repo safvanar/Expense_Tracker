@@ -1,3 +1,4 @@
+//starting of app.js
 require('dotenv').config();
 
 const fs = require('fs');

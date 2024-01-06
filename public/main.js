@@ -3,11 +3,13 @@ const expList = document.getElementById('expense-list')
 const premiumDiv = document.getElementById('premiumDiv')
 const premiumBtn = document.getElementById('premiumBtn')
 const premiumContainer = document.getElementById('premiumContainer')
+const signoutBtn = document.getElementById('signoutBtn')
 
 myForm.addEventListener('submit', addExpense)
 expList.addEventListener('click', addOrDeleteExpense)
 document.addEventListener('DOMContentLoaded', domLoad)
 premiumBtn.addEventListener('click', activateSubscription)
+signoutBtn.addEventListener('click', signOut)
 
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
@@ -34,6 +36,9 @@ async function domLoad(){
             premiumContainer.style.display = 'none'
             // let total = 0
             const token = localStorage.getItem('token')
+            if(!token){
+                window.location.href = "/login"
+            }
 
             // const userStatus = await axios.get(`/user/getStatus`, {headers: {'Authorization': token}})
             if(parseJwt(token).isPremiumUser){
@@ -139,6 +144,7 @@ async function loadPage(page) {
 function addExpense(e){
     e.preventDefault()
     const token = localStorage.getItem('token')
+
     const data ={
         expenseAmount: document.getElementById('expense').value,
         expenseTitle: document.getElementById('desc').value,
@@ -193,6 +199,11 @@ async function addOrDeleteExpense(e){
         console.log(err)
     }
     
+}
+
+async function signOut(){
+    localStorage.removeItem('token')
+    window.location.href = '/login'
 }
 
 async function activateSubscription(e){

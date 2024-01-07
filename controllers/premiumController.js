@@ -46,16 +46,17 @@ exports.getDownloadedFiles = async (req, res, next) => {
 }
 
 function generateHtmlTable(expenses) {
-    const headerRow = '<tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th></tr>';
+    const headerRow = '<tr style="background-color: #f2f2f2;"><th style="border: 1px solid #dddddd; padding: 8px;">Date</th><th style="border: 1px solid #dddddd; padding: 8px;">Category</th><th style="border: 1px solid #dddddd; padding: 8px;">Amount</th><th style="border: 1px solid #dddddd; padding: 8px;">Description</th></tr>';
     
     // The map function transforms each expense object into an HTML table row
     const bodyRows = expenses.map(expense =>
-        `<tr><td>${formatDate(expense.createdAt)}</td><td>${expense.category}</td><td>${expense.amount}</td><td>${expense.title}</td></tr>`
+        `<tr style="border: 1px solid #dddddd;"><td style="border: 1px solid #dddddd; padding: 8px;">${formatDate(expense.createdAt)}</td><td style="border: 1px solid #dddddd; padding: 8px;">${expense.category}</td><td style="border: 1px solid #dddddd; padding: 8px;">${expense.amount}</td><td style="border: 1px solid #dddddd; padding: 8px;">${expense.description || ''}</td></tr>`
     );
 
     // Join the array of HTML table rows into a single string
-    return `<table>${headerRow}${bodyRows.join('')}</table>`;
+    return `<table style="border-collapse: collapse; width: 100%;">${headerRow}${bodyRows.join('')}</table>`;
 }
+
 
 function formatDate(date) {
     const formattedDate = new Date(date).toISOString().split('T')[0];

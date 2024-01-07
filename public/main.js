@@ -48,19 +48,21 @@ async function domLoad(){
                                         <button class="btn btn-dark" style="color: gold;" onclick = "downloadReport()">Expense Report</button>`
                 const fileResponse = await axios.get('/premium/getDownloadedFiles', {headers: {'Authorization': token}})
                 const downloadedFiles = fileResponse.data.downloadedFiles
-                premiumContainer.innerHTML= '<h2>Downloaded Files</h2>'
-                let count = 1
-                let newFileList = document.createElement('ul')
-                newFileList.classList.add('list-group')
-                downloadedFiles.forEach((file) => {
-                    let newFile = document.createElement('li')
-                    newFile.classList.add('list-group-item')
-                    newFile.innerHTML = `<a href="${file.fileUrl}">File${count}</a>`
-                    newFileList.appendChild(newFile)
-                    count+=1
-                })
-                premiumContainer.appendChild(newFileList)
-                premiumContainer.style.display='block'
+                if(downloadedFiles){
+                    premiumContainer.innerHTML= '<h2>Downloaded Files</h2>'
+                    let count = 1
+                    let newFileList = document.createElement('ul')
+                    newFileList.classList.add('list-group')
+                    downloadedFiles.forEach((file) => {
+                        let newFile = document.createElement('li')
+                        newFile.classList.add('list-group-item')
+                        newFile.innerHTML = `<a href="${file.fileUrl}">File${count}</a>`
+                        newFileList.appendChild(newFile)
+                        count+=1
+                    })
+                    premiumContainer.appendChild(newFileList)
+                    premiumContainer.style.display='block'
+                }
             }
 
             console.log(token)

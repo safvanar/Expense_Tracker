@@ -38,7 +38,7 @@ exports.postResetPasswordReq = async (req, res, next) => {
                 htmlContent: `<p>Hello ${user.name},<br>
                             You are receiving this mail as per your request to change your password for your expense tracker pro account.
                             You can change your password from here:<br>
-                            <a href='http://localhost:3000/password/resetPassword/${randomUUID}'>reset password</a></p>`,
+                            <a href='http://3.110.88.179/password/resetPassword/${randomUUID}'>reset password</a></p>`,
             })
             return res.status(201).json({message: 'succesful!'})
         }else{

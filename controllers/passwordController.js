@@ -88,8 +88,6 @@ exports.getResetPassword = async (req, res, next) => {
                             <input type="password" class="form-control mr-2" id="newPassword" name="newPassword" placeholder="Enter new password...">
                             <button type="submit" id="resetPasswordBtn" class="btn btn-md btn-primary mt-2">Reset Password</button>
                         </form>
-                        Forgot password? <a class="btn btn-sm btn-warning" style="width: 3rem;" id="resetBtn">Reset</a>
-                        New to here?<a href="/signup" style="color: red; text-decoration: none;">Create an account now</a> 
                         <div style="color: red;" id="response-message"></div>
                     </div>
                 </div>

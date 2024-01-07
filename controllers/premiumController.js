@@ -21,9 +21,10 @@ exports.getReport = async (req, res, next) => {
         const expenses = await DBService.getExpenses(req)
         const userId = req.user.id
         // console.log(expenses)
-        const stringifiedExpenses = JSON.stringify(expenses)
-        const filename = `expense${userId}/${new Date()}.txt`
-        const fileUrl = await S3Service.uploadToS3(stringifiedExpenses, filename)
+        // const stringifiedExpenses = JSON.stringify(expenses)
+        const htmlContent = generateHtmlTable(expenses)
+        const filename = `expense${userId}/${new Date()}.html`
+        const fileUrl = await S3Service.uploadToS3(htmlContent, filename)
         await req.user.createDownloadedFile({fileUrl: fileUrl})
         console.log(fileUrl)
         return res.status(200).json({fileUrl: fileUrl, success: true})
@@ -43,6 +44,25 @@ exports.getDownloadedFiles = async (req, res, next) => {
         return res.status(500).json({downloadedFiles: '', success: false})
     }
 }
+
+function generateHtmlTable(expenses) {
+    const headerRow = '<tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th></tr>';
+    
+    // The map function transforms each expense object into an HTML table row
+    const bodyRows = expenses.map(expense =>
+        `<tr><td>${formatDate(expense.createdAt)}</td><td>${expense.category}</td><td>${expense.amount}</td><td>${expense.title}</td></tr>`
+    );
+
+    // Join the array of HTML table rows into a single string
+    return `<table>${headerRow}${bodyRows.join('')}</table>`;
+}
+
+function formatDate(date) {
+    const formattedDate = new Date(date).toISOString().split('T')[0];
+    return formattedDate;
+}
+
+
 
 
 // exports.getLeaderBoard = async (req, res, next) => {

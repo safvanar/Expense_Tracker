@@ -17,6 +17,7 @@ const uploadToS3 = (data, filename) => {
         Bucket: BUCKET_NAME,
         Key: filename,
         Body: data,
+        ContentType: 'text/html',
         ACL: 'public-read'
     }
     return new Promise((resolve, reject) => {

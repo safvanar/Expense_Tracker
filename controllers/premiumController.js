@@ -50,7 +50,7 @@ function generateHtmlTable(expenses) {
     
     // The map function transforms each expense object into an HTML table row
     const bodyRows = expenses.map(expense =>
-        `<tr style="border: 1px solid #dddddd;"><td style="border: 1px solid #dddddd; padding: 8px;">${formatDate(expense.createdAt)}</td><td style="border: 1px solid #dddddd; padding: 8px;">${expense.category}</td><td style="border: 1px solid #dddddd; padding: 8px;">${expense.amount}</td><td style="border: 1px solid #dddddd; padding: 8px;">${expense.description || ''}</td></tr>`
+        `<tr style="border: 1px solid #dddddd;"><td style="border: 1px solid #dddddd; padding: 8px;">${formatDate(expense.createdAt)}</td><td style="border: 1px solid #dddddd; padding: 8px;">${expense.category}</td><td style="border: 1px solid #dddddd; padding: 8px;">${expense.amount}</td><td style="border: 1px solid #dddddd; padding: 8px;">${expense.title || ''}</td></tr>`
     );
 
     // Join the array of HTML table rows into a single string
